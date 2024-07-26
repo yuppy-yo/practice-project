@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
 def index(request):
@@ -10,7 +11,7 @@ def workers(request, worker_id):
 
 def archive(request, year):
     if year > 2024:
-        raise Http404()
+        return redirect('home')
     return HttpResponse(f"<h1>АрХив по годам</h1><p>{year}</p>")
 
 def pageNotFound(request, exception):
